@@ -545,7 +545,14 @@ const DesignStudio = () => {
                           <Input
                             type="text"
                             value={textColor}
-                            onChange={(e) => setTextColor(e.target.value)}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              // Only update if valid hex color format or empty
+                              if (val === '' || /^#[0-9A-Fa-f]{0,6}$/.test(val)) {
+                                setTextColor(val);
+                              }
+                            }}
+                            placeholder="#000000"
                             className="h-12 flex-1"
                           />
                         </div>
